@@ -216,8 +216,8 @@ while [[ $# -gt 0 ]]; do
            exit 0
        fi
        ;;
-    '--no-sudo')
-       USE_SUDO="false"
+    'sudo')
+       USE_SUDO="true"
        ;;
     '--help'|-h)
        help
