@@ -19,7 +19,7 @@ package lint // import "helm.sh/helm/v4/pkg/lint"
 import (
 	"path/filepath"
 
-	"helm.sh/helm/v4/pkg/chartutil"
+	chartutil "helm.sh/helm/v4/pkg/chart/v2/util"
 	"helm.sh/helm/v4/pkg/lint/rules"
 	"helm.sh/helm/v4/pkg/lint/support"
 )
@@ -60,6 +60,7 @@ func RunAll(baseDir string, values map[string]interface{}, namespace string, opt
 	rules.ValuesWithOverrides(&result, values)
 	rules.TemplatesWithSkipSchemaValidation(&result, values, namespace, lo.KubeVersion, lo.SkipSchemaValidation)
 	rules.Dependencies(&result)
+	rules.Crds(&result)
 
 	return result
 }
